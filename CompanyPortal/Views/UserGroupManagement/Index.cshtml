@@ -1,0 +1,84 @@
+﻿@model CompanyPortal.Models.ViewModels.UserGroupViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="form-group">
+    <label for="userGroupDropdown">User Group</label>
+    <select id="userGroupDropdown" asp-for="SelectedGroupId" class="form-control">
+        <option value="">Select User Group</option>
+        @foreach (var group in Model.UserGroups)
+        {
+            <option value="@group.GroupId">@group.GroupName</option>
+        }
+    </select>
+</div>
+
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Group Users</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Company Id</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="groupUsers">
+                @foreach (var user in Model.GroupUsers)
+                {
+                    <tr>
+                        <td>@user.UserName</td>
+                        <td>@user.CompanyId</td>
+                        <td><a asp-action="Remove" asp-route-userId="@user.UserId" asp-route-groupId="@Model.SelectedGroupId" class="btn btn-danger">Remove</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <h2>Other Users</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Company Id</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="otherUsers">
+                @foreach (var user in Model.OtherUsers)
+                {
+                    <tr>
+                        <td>@user.UserName</td>
+                        <td>@user.CompanyId</td>
+                        <td><a asp-action="Add" asp-route-userId="@user.UserId" asp-route-groupId="@Model.SelectedGroupId" class="btn btn-success">Add</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Set the selected group after the dropdown has been rendered
+        var selectedGroupId = @Model.SelectedGroupId;
+        if (selectedGroupId) {
+            $('#userGroupDropdown').val(selectedGroupId.toString());
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#userGroupDropdown').change(function () {
+                var selectedGroupId = $(this).val();
+                window.location.href = '@Url.Action("Index", "UserGroupManagement")?groupId=' + selectedGroupId;
+            });
+        });
+    </script>
+}
