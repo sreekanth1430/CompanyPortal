@@ -1,0 +1,119 @@
+﻿@model CompanyPortal.Models.TblCompilenceDocument
+@{
+    var document = ViewData["Document"] as CompanyPortal.Models.TblCompilenceDocument ?? new CompanyPortal.Models.TblCompilenceDocument();
+}
+
+<h1><strong>Company Documents</strong></h1>
+
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Document Path</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewData["Documents"] as IEnumerable<CompanyPortal.Models.TblCompilenceDocument>)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@(item.DocumentAlias == "0" ? item.DocumentAliasLink : item.DocumentAlias)</td>
+                <td>
+                    <a asp-action="DocumentIndex" asp-route-id="@item.Id" class="btn btn-primary">Edit</a> |
+                    <a asp-action="DocumentDelete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>@(Model.Id == 0 ? "Create" : "Edit") Document</h3>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<form asp-action="@(Model.Id == 0 ? "DocumentCreate" : "DocumentEdit")">
+    <input type="hidden" asp-for="@Model.Id" />
+    <div class="form-group">
+        <label>Title</label>
+        <input asp-for="@Model.Title" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Document Type</label>
+        <div>
+            <input type="radio" name="documentType" value="upload" checked /> Document Upload
+            <input type="radio" name="documentType" value="link" /> Document Link
+        </div>
+    </div>
+
+    <div class="form-group upload">
+        <label>Upload Document</label>
+        <input type="file" id="fileUpload" class="form-control" />
+        <input type="hidden" asp-for="@Model.DocumentAlias" id="filePath" />
+
+        /* @if (!string.IsNullOrEmpty(Model.DocumentName))
+         {
+             <input type="text" value="@Model.DocumentName" class="form-control" readonly />
+        } */
+    </div>
+
+    <div class="form-group link" style="display:none">
+        <label>Document Link</label>
+        <input asp-for="@Model.DocumentAliasLink" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Document</button>
+</form>
+
+<script>
+    $(document).ready(function () {
+        var documentAlias = '@Model.DocumentAlias';
+        if (documentAlias == '0') {
+            $('input[type=radio][name=documentType][value=link]').prop('checked', true);
+            $('.upload').hide();
+            $('.link').show();
+        } else {
+            $('input[type=radio][name=documentType][value=upload]').prop('checked', true);
+            $('.upload').show();
+            $('.link').hide();
+        }
+
+        $('input[type=radio][name=documentType]').change(function () {
+            if (this.value == 'upload') {
+                $('.upload').show();
+                $('.link').hide();
+            }
+            else if (this.value == 'link') {
+                $('.upload').hide();
+                $('.link').show();
+            }
+        });
+    });
+
+    document.getElementById('fileUpload').addEventListener('change', function () {
+        var filePath = this.value;
+        document.getElementById('filePath').value = filePath;
+        document.getElementById('fileName').value = filePath.split(/(\\|\/)/g).pop();
+    });
+</script>
+
+<style>
+    .form-group {
+        margin-bottom: 1em;
+    }
+
+        .form-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5em;
+        }
+
+        .form-group div {
+            padding-left: 1em;
+        }
+
+        .form-group input[type="radio"] {
+            margin-right: 0.5em;
+        }
+</style>

@@ -8,7 +8,7 @@ namespace CompanyPortal.Models
         public int CompanyId { get; set; }
         public string Title { get; set; }
         public string Url { get; set; }
-        public DateTime? InsertDate { get; set; }
+        public DateTime? Insert_date { get; set; }
         public int? LinkOrder { get; set; }
 
         public TblCompany Company { get; set; }

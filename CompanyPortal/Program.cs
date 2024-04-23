@@ -27,8 +27,21 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapControllerRoute(
+            name: "Links",
+            pattern: "Links/{id?}",
+            defaults: new { controller = "EmployeeExperience", action = "LinkIndex" });
+
+        endpoints.MapControllerRoute(
+            name: "Documents",
+            pattern: "Documents/{id?}",
+            defaults: new { controller = "EmployeeExperience", action = "DocumentIndex" });
+
+        endpoints.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=Home}/{action=Index}/{id?}");
+    });
 
 app.Run();

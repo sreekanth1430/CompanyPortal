@@ -1,0 +1,45 @@
+﻿@model CompanyPortal.Models.TblLink
+@{
+    var link = ViewData["Link"] as CompanyPortal.Models.TblLink ?? new CompanyPortal.Models.TblLink();
+}
+
+<h1><strong>Company Links</strong></h1>
+
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>URL</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewData["Links"] as IEnumerable<CompanyPortal.Models.TblLink>)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Url</td>
+                <td>
+                    <a asp-action="LinkIndex" asp-route-id="@item.Id" class="btn btn-primary">Edit</a> |
+                    <a asp-action="LinkDelete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>@(Model.Id == 0 ? "Create" : "Edit") Link</h3>
+
+<form asp-action="@(Model.Id == 0 ? "LinkCreate" : "LinkEdit")">
+    <input type="hidden" asp-for="@Model.Id" />
+    <div class="form-group">
+        <label>Title</label>
+        <input asp-for="@Model.Title" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>URL</label>
+        <input asp-for="@Model.Url" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
