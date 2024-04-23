@@ -133,10 +133,18 @@ namespace CompanyPortal.Controllers
             var tblUserGroup = await _context.TblUserGroups.FindAsync(id);
             if (tblUserGroup != null)
             {
-                _context.TblUserGroups.Remove(tblUserGroup);
+                var requestTypesForCompany = _context.TblUserGroups.Where(rt => rt.CompanyId == tblUserGroup.CompanyId);
+                if (requestTypesForCompany.Count() > 1)
+                {
+                    _context.TblUserGroups.Remove(tblUserGroup);
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    ModelState.AddModelError("", "A company must have at least 1 User Group record.");
+                    return View(tblUserGroup);
+                }
             }
-
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

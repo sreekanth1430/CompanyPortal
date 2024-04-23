@@ -1,0 +1,69 @@
+﻿@model CompanyPortal.Models.TblContact
+@{
+    var contact = ViewData["Contact"] as CompanyPortal.Models.TblContact ?? new CompanyPortal.Models.TblContact();
+}
+
+
+<h1><strong>Employee Contacts</strong></h1>
+
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Title</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Employee Display</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewData["Contacts"] as IEnumerable<CompanyPortal.Models.TblContact>)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Title</td>
+            <td>@item.Email</td>
+            <td>@item.Phone</td>
+            <td>@item.DisplayEmployee</td>
+            <td>
+                    <a asp-action="Index" asp-route-id="@item.Id" class="btn btn-primary">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+<h3>@(Model.Id == 0 ? "Create" : "Edit") Contact</h3>
+
+<form asp-action="@(Model.Id == 0 ? "Create" : "Edit")">
+    <input type="hidden" asp-for="@Model.Id" />
+    <div class="form-group">
+        <label>Name</label>
+        <input asp-for="@Model.Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Title</label>
+        <input asp-for="@Model.Title" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input asp-for="@Model.Email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Phone</label>
+        <input asp-for="@Model.Phone" class="form-control" />
+    </div>
+    <div class="form-group form-check checkbox">
+        <input asp-for="@Model.IsActive" class="form-check-input" />
+        <label class="form-check-label">Active</label>
+    </div>
+    <div class="form-group form-check checkbox">
+        <input asp-for="@Model.DisplayEmployee" class="form-check-input" />
+        <label class="form-check-label">Display for Employee</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

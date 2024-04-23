@@ -1,0 +1,43 @@
+﻿@model IEnumerable<CompanyPortal.Models.TblRequestType>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Request Types</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Create New</a>
+</p>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestTypeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestTypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company.CompanyId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.RequestTypeId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.RequestTypeId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RequestTypeId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,35 @@
+﻿@model CompanyPortal.Models.TblTicketAssignment
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center">Ticket Assignment Details</h2>
+
+    <div class="card">
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-4">Ticket Assignment ID</dt>
+                <dd class="col-sm-8">@Model.TicketAssignmentId</dd>
+
+                <dt class="col-sm-4">Group Name</dt>
+                <dd class="col-sm-8">@Model.GroupName</dd>
+
+                <dt class="col-sm-4">Urgency Level Name</dt>
+                <dd class="col-sm-8">@Model.UrgencyLevelName</dd>
+
+                <dt class="col-sm-4">Request Type Name</dt>
+                <dd class="col-sm-8">@Model.RequestTypeName</dd>
+
+                <dt class="col-sm-4">User Name</dt>
+                <dd class="col-sm-8">@Model.UserName</dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <a asp-action="Edit" asp-route-id="@Model.TicketAssignmentId" class="btn btn-primary">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

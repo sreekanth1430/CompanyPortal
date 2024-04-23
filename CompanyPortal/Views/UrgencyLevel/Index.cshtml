@@ -1,0 +1,47 @@
+﻿@model IEnumerable<CompanyPortal.Models.TblUrgencyLevel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Urgency Level</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UrgencyLevelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UrgencyOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UrgencyLevelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UrgencyOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company.CompanyId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.UrgencyLevelId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.UrgencyLevelId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.UrgencyLevelId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

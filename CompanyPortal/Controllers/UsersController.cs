@@ -48,45 +48,6 @@ namespace CompanyPortal.Controllers
             return View(user);
         }
 
-        /* // POST: Users/Assign/5
-         [HttpPost]
-         [ValidateAntiForgeryToken]
-         public async Task<IActionResult> Assign(int id, [Bind("UserId,UserName,CompanyId,UserGroupId")] TblUser user)
-         {
-             if (id != user.UserId)
-             {
-                 return NotFound();
-             }
-
-             if (ModelState.IsValid)
-             {
-                 try
-                 {
-                     _context.Update(user);
-                     await _context.SaveChangesAsync();
-                 }
-                 catch (DbUpdateConcurrencyException)
-                 {
-                     if (!UserExists(user.UserId))
-                     {
-                         return NotFound();
-                     }
-                     else
-                     {
-                         throw;
-                     }
-                 }
-                 return RedirectToAction(nameof(Index));
-             }
-             ViewData["UserGroupId"] = new SelectList(_context.TblUserGroups, "GroupId", "GroupName", user.UserId);
-             return View(user);
-         }
-
-         private bool UserExists(int id)
-         {
-             return _context.TblUsers.Any(e => e.UserId == id);
-         }*/
-
         [HttpPost]
         public async Task<IActionResult> Assign(int id, int groupId)
         {

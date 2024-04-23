@@ -1,0 +1,156 @@
+﻿<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+    function deleteConfirmation(url) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = url;
+            }
+        })
+    }
+</script>
+
+
+@model CompanyPortal.Models.ViewModels.TicketAssignmentViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Ticket Assignment</h2>
+
+<style>
+        /* CSS */
+        .form-inline .form-group {
+            display: inline-block;
+            vertical-align: top;
+            margin-right: 25px;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown select {
+            width: 200px;
+            max-width: 200px;
+        }
+
+        .dropdown .dropdown-icon {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+
+</style>
+
+<div class="form-group">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+</div>
+
+<br />
+
+<!-- Dropdowns -->
+<form asp-action="Create" class="form-inline">
+    <div class="form-group">
+        <strong for="SelectedGroupId">Group</strong>
+        <div class="dropdown">
+            <select asp-for="SelectedGroupId" class="form-control custom-select">
+                <option value="">Select</option>
+                @foreach (var group in Model.Groups)
+                {
+                    <option value="@group.Value">@group.Text</option>
+                }
+            </select>
+            <span class="dropdown-icon">▼</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <strong for="SelectedGroupId">Urgency Level</strong>
+        <div class="dropdown">
+            <select asp-for="SelectedUrgencyLevelId" class="form-control custom-select">
+                <option value="">Select</option>
+                @foreach (var urgencyLevel in Model.UrgencyLevels)
+                {
+                    <option value="@urgencyLevel.Value">@urgencyLevel.Text</option>
+                }
+            </select>
+            <span class="dropdown-icon">▼</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <strong for="SelectedGroupId">Request Type</strong>
+        <div class="dropdown">
+            <select asp-for="SelectedRequestTypeId" class="form-control custom-select">
+                <option value="">Select</option>
+                @foreach (var requestType in Model.RequestTypes)
+                {
+                    <option value="@requestType.Value">@requestType.Text</option>
+                }
+            </select>
+            <span class="dropdown-icon">▼</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <strong for="SelectedGroupId">User</strong>
+        <div class="dropdown">
+            <select asp-for="SelectedUserId" class="form-control custom-select">
+                <option value="">Select</option>
+                @foreach (var user in Model.Users)
+                {
+                    <option value="@user.Value">@user.Text</option>
+                }
+            </select>
+            <span class="dropdown-icon">▼</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-success" />
+    </div>
+</form>
+
+<!-- Grid -->
+<br></br>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ticket Id</th>
+            <th>GroupName</th>
+            <th>UrgencyLevelName</th>
+            <th>RequestTypeName</th>
+            <th>Group Id</th>
+            <th>UserName</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.TicketAssignments)
+        {
+            <tr>
+                <td>@item.TicketAssignmentId</td>
+                <td>@Html.DisplayFor(modelItem => item.GroupName)</td>
+                <td>@Html.DisplayFor(modelItem => item.UrgencyLevelName)</td>
+                <td>@Html.DisplayFor(modelItem => item.RequestTypeName)</td>
+                <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.TicketAssignmentId" class="btn btn-primary">Edit</a> |
+                    <a onclick="event.preventDefault(); deleteConfirmation('@Url.Action("Delete", new { id = item.TicketAssignmentId })');" asp-action="Delete" asp-route-id="@item.TicketAssignmentId" class="btn btn-primary">Delete</a> |
+                    <a asp-action="Details" asp-route-id="@item.TicketAssignmentId" class="btn btn-info">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

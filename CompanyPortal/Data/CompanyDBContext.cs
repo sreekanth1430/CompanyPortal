@@ -13,13 +13,19 @@ namespace CompanyPortal.Data
         public DbSet<TblUser> TblUsers { get; set; }
         public DbSet<TblUserGroup> TblUserGroups { get; set; }
         public DbSet<UserGroupMapping> UserGroupMappings { get; set; }
+        public DbSet<TblLink> TblLinks { get; set; }
+        public DbSet<TblContact> TblContacts { get; set; }
+        public DbSet<TblCompilenceDocument> TblCompilenceDocuments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<TblCompany>().ToTable("TblCompany");
             modelBuilder.Entity<TblUser>().ToTable("TblUser");
             modelBuilder.Entity<TblUserGroup>().ToTable("TblUserGroup");
-            modelBuilder.Entity<UserGroupMapping>().ToTable("UserGroupMapping");
+            modelBuilder.Entity<UserGroupMapping>().ToTable("UserGroupMapping"); 
+            modelBuilder.Entity<TblLink>().ToTable("tblLinks");
+            modelBuilder.Entity<TblContact>().ToTable("tblContacts");
+            modelBuilder.Entity<TblCompilenceDocument>().ToTable("tblCompilenceDocuments");
 
             modelBuilder.Entity<UserGroupMapping>()
                 .HasKey(ugm => new { ugm.UserId, ugm.GroupId });
@@ -34,5 +40,8 @@ namespace CompanyPortal.Data
                 .WithMany(ug => ug.UserGroups)
                 .HasForeignKey(ugm => ugm.GroupId);
         }
+        public DbSet<CompanyPortal.Models.TblUrgencyLevel> TblUrgencyLevel { get; set; } = default!;
+        public DbSet<CompanyPortal.Models.TblRequestType> TblRequestType { get; set; } = default!;
+        public DbSet<CompanyPortal.Models.TblTicketAssignment> TblTicketAssignment { get; set; } = default!;
     }
 }
