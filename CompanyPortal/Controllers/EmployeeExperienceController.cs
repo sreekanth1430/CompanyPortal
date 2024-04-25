@@ -1,6 +1,8 @@
 ﻿using CompanyPortal.Data;
 using CompanyPortal.Models;
+using CompanyPortal.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Policy;
 
@@ -14,6 +16,24 @@ namespace CompanyPortal.Controllers
         {
             _context = context;
         }
+
+        //EmployeeExperienceView 
+        public async Task<IActionResult> CompanyDetails(int companyId)
+        {
+            var contacts = await _context.TblContacts.Where(c => c.CompanyId == companyId).ToListAsync();
+            var documents = await _context.TblCompilenceDocuments.Where(d => d.CompanyId == companyId).ToListAsync();
+            var links = await _context.TblLinks.Where(l => l.CompanyId == companyId).ToListAsync();
+
+            var model = new EmployeeExperienceViewModel
+            {
+                Contacts = contacts,
+                Documents = documents,
+                Links = links
+            };
+
+            return View("EmployeeExperienceView", model);
+        }
+
 
         #region Contact
 
@@ -257,6 +277,7 @@ namespace CompanyPortal.Controllers
                     ViewData["Document"] = document;
                 }
             }
+            ViewData["CompanyId"] = new SelectList(_context.TblCompanies, "CompanyId", "CompanyId");
             return View("DocumentIndex", document ?? new TblCompilenceDocument());
         }
 
@@ -333,8 +354,7 @@ namespace CompanyPortal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DocumentCreate([Bind("Id,CompanyId,Title,DocumentAlias,DocumentAliasLink,Insert_date,DocumentOrder")] TblCompilenceDocument tblCompilenceDocument)
         {
-            // Map CompanyId to default i.e CompanyId = 5
-            tblCompilenceDocument.CompanyId = 5;
+            tblCompilenceDocument.CompanyId = tblCompilenceDocument.CompanyId;
 
             tblCompilenceDocument.DocumentOrder = null;
             tblCompilenceDocument.InsertDate = DateTime.Now;
@@ -350,6 +370,7 @@ namespace CompanyPortal.Controllers
 
                 tblCompilenceDocument.DocumentName = Path.GetFileName(tblCompilenceDocument.DocumentAlias);
                 tblCompilenceDocument.DocumentAliasLink = "0";
+                tblCompilenceDocument.DocumentAlias = "/Uploaded/" + tblCompilenceDocument.DocumentName;
             }
 
             _context.Add(tblCompilenceDocument);

@@ -52,17 +52,19 @@
         <label>Upload Document</label>
         <input type="file" id="fileUpload" class="form-control" />
         <input type="hidden" asp-for="@Model.DocumentAlias" id="filePath" />
-
-        /* @if (!string.IsNullOrEmpty(Model.DocumentName))
-         {
-             <input type="text" value="@Model.DocumentName" class="form-control" readonly />
-        } */
     </div>
 
     <div class="form-group link" style="display:none">
         <label>Document Link</label>
         <input asp-for="@Model.DocumentAliasLink" class="form-control" />
     </div>
+
+    <div class="form-group">
+        <label asp-for="CompanyId" class="control-label"></label>
+        <select asp-for="CompanyId" class="form-control" asp-items="ViewBag.CompanyId"></select>
+        <span asp-validation-for="CompanyId" class="text-danger"></span>
+    </div>
+
     <button type="submit" class="btn btn-primary">Submit Document</button>
 </form>
 

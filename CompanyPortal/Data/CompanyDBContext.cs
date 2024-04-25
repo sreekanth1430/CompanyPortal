@@ -16,6 +16,7 @@ namespace CompanyPortal.Data
         public DbSet<TblLink> TblLinks { get; set; }
         public DbSet<TblContact> TblContacts { get; set; }
         public DbSet<TblCompilenceDocument> TblCompilenceDocuments { get; set; }
+        public DbSet<TblLocation> TblLocations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -26,6 +27,7 @@ namespace CompanyPortal.Data
             modelBuilder.Entity<TblLink>().ToTable("tblLinks");
             modelBuilder.Entity<TblContact>().ToTable("tblContacts");
             modelBuilder.Entity<TblCompilenceDocument>().ToTable("tblCompilenceDocuments");
+            modelBuilder.Entity<TblLocation>().ToTable("TblLocation");
 
             modelBuilder.Entity<UserGroupMapping>()
                 .HasKey(ugm => new { ugm.UserId, ugm.GroupId });

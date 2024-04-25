@@ -17,4 +17,17 @@
     <PackageReference Include="SweetAlert" Version="1.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Uploaded\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Uploaded\doc1.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Uploaded\Emp_Test.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
