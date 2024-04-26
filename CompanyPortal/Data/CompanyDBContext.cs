@@ -17,6 +17,8 @@ namespace CompanyPortal.Data
         public DbSet<TblContact> TblContacts { get; set; }
         public DbSet<TblCompilenceDocument> TblCompilenceDocuments { get; set; }
         public DbSet<TblLocation> TblLocations { get; set; }
+        public DbSet<TblEmployee> TblEmployees { get; set; }
+        public DbSet<TblEmployeesInRole> TblEmployeesInRoles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,6 +30,8 @@ namespace CompanyPortal.Data
             modelBuilder.Entity<TblContact>().ToTable("tblContacts");
             modelBuilder.Entity<TblCompilenceDocument>().ToTable("tblCompilenceDocuments");
             modelBuilder.Entity<TblLocation>().ToTable("TblLocation");
+            modelBuilder.Entity<TblEmployee>().ToTable("TblEmployee");
+            modelBuilder.Entity<TblEmployeesInRole>().ToTable("TblEmployeesInRole");
 
             modelBuilder.Entity<UserGroupMapping>()
                 .HasKey(ugm => new { ugm.UserId, ugm.GroupId });
