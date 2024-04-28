@@ -12,7 +12,7 @@
     }
 </style>
 
-<h2>Employees</h2>
+@* <h2>Employees</h2> *@
 
 <table class="table table-striped">
     <thead>
@@ -36,12 +36,12 @@
                     <form asp-action="ChangeRole" asp-controller="TeamMembers" method="post" class="d-inline-block ml-2">
                         <input type="hidden" name="employeeId" value="@employee.EmployeeId" />
                         <input type="hidden" name="newRoleId" value="2" />
-                        <input type="submit" value="Make HR User" class="btn btn-primary" />
+                        <input type="submit" value="Make HR" class="btn btn-success" />
                     </form>
                     <form asp-action="ChangeRole" asp-controller="TeamMembers" method="post" class="d-inline-block">
                         <input type="hidden" name="employeeId" value="@employee.EmployeeId" />
                         <input type="hidden" name="newRoleId" value="3" />
-                        <input type="submit" value="Make Campus User" class="btn btn-primary" />
+                        <input type="submit" value="Make Campus User" class="btn btn-success" />
                     </form>
                 </td>
             </tr>
@@ -74,7 +74,7 @@
                     <form asp-action="ChangeRole" asp-controller="TeamMembers" method="post" class="form-inline">
                         <input type="hidden" name="employeeId" value="@employee.EmployeeId" />
                         <input type="hidden" name="newRoleId" value="1" />
-                        <input type="submit" value="Remove HR User" class="btn btn-primary mr-2" />
+                        <input type="submit" value="Remove HR User" class="btn btn-danger mr-2" />
                     </form>
                 </td>
             </tr>
@@ -107,7 +107,7 @@
                     <form asp-action="ChangeRole" asp-controller="TeamMembers" method="post" class="form-inline">
                         <input type="hidden" name="employeeId" value="@employee.EmployeeId" />
                         <input type="hidden" name="newRoleId" value="1" />
-                        <input type="submit" value="Remove Campus User" class="btn btn-primary mr-2" />
+                        <input type="submit" value="Remove Campus User" class="btn btn-danger mr-2" />
                     </form>
                 </td>
             </tr>

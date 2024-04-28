@@ -2,6 +2,168 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome Sreekanth</h1>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    #header {
+        background-color: #f8f9fa;
+        padding: 10px 15px;
+    }
+
+        #header .navbar .navbar-brand {
+            color: #495057;
+        }
+
+    .navbar-brand {
+        color: #007bff;
+    }
+
+    .navbar .navbar-brand.active {
+        color: #495057;
+        background-color: #fff;
+        border-color: #dee2e6 #dee2e6 #fff;
+    }
+
+    .navbar {
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+    .bg-custom {
+        background-color: #d3d3d3; /* This is light gray */
+    }
+</style>
+@* 
+<header id="header">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CompanyPortal</a>
+        </div>
+    </nav>
+</header> *@
+<header id="header">
+    <nav class="navbar navbar-expand-lg navbar-light bg-custom">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <!-- Add more links here -->
+                </ul>
+            </div>
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CompanyPortal</a>
+        </div>
+    </nav>
+</header>
+
+<!-- Include Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- Include jQuery library -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Header -->
+<div id="header">
+    <ul class="nav nav-tabs" id="myTabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#people">People</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#rules">Rules</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#miscellaneous">Employee Miscellaneous</a>
+        </li>
+    </ul>
 </div>
+
+
+<div class="row">
+    <div class="col-md-2">
+        <div class="tab-content">
+            <div class="tab-pane active" id="people">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/TeamMembers">Team Members</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Groups">Groups</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Users">End Users</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-pane" id="rules">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/UrgencyLevel">Urgency Level</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/RequestType">Request Type</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/TicketAssignment">Auto Assign</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Locations">Locations</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-pane" id="miscellaneous">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/EmployeeExperience">Contacts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Documents">Documents</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Links">Links</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- This div should also be directly inside the .row div, alongside the .col-md-3 -->
+    <div class="col-md-10" id="content"></div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#myTabs a').on('click', function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+            var target = $(this).attr('href');
+            $(target).show().siblings('.tab-pane').hide();
+        });
+
+        // Load content for links within the tabs only
+        $('.tab-pane .nav-link').on('click', function (e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            $('#content').html(''); // Clear the content first
+            loadContent(url); // Then load new content
+        });
+
+        // Handle links within the loaded content
+        $(document).on('click', '#content a', function (e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            loadContent(url);
+        });
+
+        function loadContent(url) {
+            $.get(url, function (data) {
+                $('#content').html(data);
+            });
+        }
+    });
+</script>
+
