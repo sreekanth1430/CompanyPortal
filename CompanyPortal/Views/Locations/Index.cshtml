@@ -4,57 +4,65 @@
     ViewData["Title"] = "Index";
 }
 
+<style>
+    .no-margin-padding {
+        margin: 0;
+        padding: 0;
+    }
+</style>
 
-@* <h1>Locations</h1> *@
-
-<p>
-    <a asp-action="Create" class="btn btn-success">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LocationCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Company)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LocationCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Company.CompanyId)
-            </td>
-            <td>
-                    <a asp-action="Edit" asp-route-id="@item.LocationID" class="btn btn-secondary">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.LocationID" class="btn btn-primary">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.LocationID" class="btn btn-danger">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="middle-wrap mb-5 no-margin-padding">
+    <div class="container pb-5 no-margin-padding">
+        <div class="employee-dashboard bg-white p-lg-5 p-4 no-margin-padding">
+            <div class="page-title mb-4">
+                <h1 class="green-color">Locations</h1>
+            </div>
+            <div class="form-sec">
+                <div class="row no-margin-padding">
+                    <div class="tab-card-sec">
+                        <div class="page-title">
+                            <h2>Manage Locations</h2>
+                        </div>
+                        <div class="tab-card">
+                            <p>
+                                <a asp-action="Create" class="btn btn-success">Create New</a>
+                            </p>
+                            <!-- Grid -->
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead style="background-color: #212529; color: #fff;">
+                                        <tr>
+                                            <th>@Html.DisplayNameFor(model => model.Name)</th>
+                                            <th>@Html.DisplayNameFor(model => model.Address)</th>
+                                            <th>@Html.DisplayNameFor(model => model.PhoneNumber)</th>
+                                            <th>@Html.DisplayNameFor(model => model.LocationCode)</th>
+                                            <th>@Html.DisplayNameFor(model => model.Company)</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.LocationCode)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.Company.CompanyId)</td>
+                                                <td>
+                                                    <a asp-action="Edit" asp-route-id="@item.LocationID" class="btn btn-secondary">Edit</a>
+                                                    <a asp-action="Details" asp-route-id="@item.LocationID" class="btn btn-primary">Details</a>
+                                                    <a asp-action="Delete" asp-route-id="@item.LocationID" class="btn btn-danger">Delete</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

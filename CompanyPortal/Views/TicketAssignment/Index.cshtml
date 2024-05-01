@@ -52,6 +52,10 @@
             pointer-events: none;
         }
 
+    .no-margin-padding {
+        margin: 0;
+        padding: 0;
+    }
 
 </style>
 
@@ -62,95 +66,116 @@
 <br />
 
 <!-- Dropdowns -->
-<form asp-action="Create" class="form-inline">
-    <div class="form-group">
-        <strong for="SelectedGroupId">Group</strong>
-        <div class="dropdown">
-            <select asp-for="SelectedGroupId" class="form-control custom-select">
-                <option value="">Select</option>
-                @foreach (var group in Model.Groups)
-                {
-                    <option value="@group.Value">@group.Text</option>
-                }
-            </select>
-            <span class="dropdown-icon">▼</span>
-        </div>
-    </div>
-    <div class="form-group">
-        <strong for="SelectedGroupId">Urgency Level</strong>
-        <div class="dropdown">
-            <select asp-for="SelectedUrgencyLevelId" class="form-control custom-select">
-                <option value="">Select</option>
-                @foreach (var urgencyLevel in Model.UrgencyLevels)
-                {
-                    <option value="@urgencyLevel.Value">@urgencyLevel.Text</option>
-                }
-            </select>
-            <span class="dropdown-icon">▼</span>
-        </div>
-    </div>
-    <div class="form-group">
-        <strong for="SelectedGroupId">Request Type</strong>
-        <div class="dropdown">
-            <select asp-for="SelectedRequestTypeId" class="form-control custom-select">
-                <option value="">Select</option>
-                @foreach (var requestType in Model.RequestTypes)
-                {
-                    <option value="@requestType.Value">@requestType.Text</option>
-                }
-            </select>
-            <span class="dropdown-icon">▼</span>
-        </div>
-    </div>
-    <div class="form-group">
-        <strong for="SelectedGroupId">User</strong>
-        <div class="dropdown">
-            <select asp-for="SelectedUserId" class="form-control custom-select">
-                <option value="">Select</option>
-                @foreach (var user in Model.Users)
-                {
-                    <option value="@user.Value">@user.Text</option>
-                }
-            </select>
-            <span class="dropdown-icon">▼</span>
-        </div>
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Save" class="btn btn-success" />
-    </div>
-</form>
 
 <!-- Grid -->
 <br></br>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Ticket Id</th>
-            <th>GroupName</th>
-            <th>UrgencyLevelName</th>
-            <th>RequestTypeName</th>
-            <th>Group Id</th>
-            <th>UserName</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.TicketAssignments)
-        {
-            <tr>
-                <td>@item.TicketAssignmentId</td>
-                <td>@Html.DisplayFor(modelItem => item.GroupName)</td>
-                <td>@Html.DisplayFor(modelItem => item.UrgencyLevelName)</td>
-                <td>@Html.DisplayFor(modelItem => item.RequestTypeName)</td>
-                <td>@Html.DisplayFor(modelItem => item.UserName)</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.TicketAssignmentId" class="btn btn-primary">Edit</a> |
-                    <a onclick="event.preventDefault(); deleteConfirmation('@Url.Action("Delete", new { id = item.TicketAssignmentId })');" asp-action="Delete" asp-route-id="@item.TicketAssignmentId" class="btn btn-primary">Delete</a> |
-                    <a asp-action="Details" asp-route-id="@item.TicketAssignmentId" class="btn btn-info">Details</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="middle-wrap mb-5 no-margin-padding">
+    <div class="container pb-5 no-margin-padding">
+        <div class="employee-dashboard bg-white p-lg-5 p-4 no-margin-padding">
+            <div class="page-title mb-4">
+                <h1 class="green-color">Ticket Assignment</h1>
+            </div>
+
+
+            <form asp-action="Create" class="form-inline">
+                <div class="form-group">
+                    <strong for="SelectedGroupId">Group</strong>
+                    <div class="dropdown">
+                        <select asp-for="SelectedGroupId" class="form-control custom-select">
+                            <option value="">Select</option>
+                            @foreach (var group in Model.Groups)
+                            {
+                                <option value="@group.Value">@group.Text</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <strong for="SelectedGroupId">Urgency Level</strong>
+                    <div class="dropdown">
+                        <select asp-for="SelectedUrgencyLevelId" class="form-control custom-select">
+                            <option value="">Select</option>
+                            @foreach (var urgencyLevel in Model.UrgencyLevels)
+                            {
+                                <option value="@urgencyLevel.Value">@urgencyLevel.Text</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <strong for="SelectedGroupId">Request Type</strong>
+                    <div class="dropdown">
+                        <select asp-for="SelectedRequestTypeId" class="form-control custom-select">
+                            <option value="">Select</option>
+                            @foreach (var requestType in Model.RequestTypes)
+                            {
+                                <option value="@requestType.Value">@requestType.Text</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <strong for="SelectedGroupId">User</strong>
+                    <div class="dropdown">
+                        <select asp-for="SelectedUserId" class="form-control custom-select">
+                            <option value="">Select</option>
+                            @foreach (var user in Model.Users)
+                            {
+                                <option value="@user.Value">@user.Text</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-success" />
+                </div>
+            </form>
+
+            <div class="form-sec">
+                <div class="row no-margin-padding">
+                    <div class="tab-card-sec">
+                        <div class="page-title">
+                            <h2>Manage Tickets</h2>
+                        </div>
+                        <div class="tab-card">
+                            <!-- Grid -->
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead style="background-color: #212529; color: #fff;">
+                                        <tr>
+                                            <th>Ticket Id</th>
+                                            <th>GroupName</th>
+                                            <th>UrgencyLevelName</th>
+                                            <th>RequestTypeName</th>
+                                            <th>UserName</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.TicketAssignments)
+                                        {
+                                            <tr>
+                                                <td>@item.TicketAssignmentId</td>
+                                                <td>@Html.DisplayFor(modelItem => item.GroupName)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.UrgencyLevelName)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.RequestTypeName)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                                                <td>
+                                                    <a asp-action="Edit" asp-route-id="@item.TicketAssignmentId" class="btn btn-primary">Edit</a>
+                                                    <a onclick="event.preventDefault(); deleteConfirmation('@Url.Action("Delete", new { id = item.TicketAssignmentId })');" asp-action="Delete" asp-route-id="@item.TicketAssignmentId" class="btn btn-primary">Delete</a>
+                                                    <a asp-action="Details" asp-route-id="@item.TicketAssignmentId" class="btn btn-info">Details</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
