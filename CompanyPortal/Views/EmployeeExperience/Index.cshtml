@@ -3,36 +3,64 @@
     var contact = ViewData["Contact"] as CompanyPortal.Models.TblContact ?? new CompanyPortal.Models.TblContact();
 }
 
-@*<h1><strong>Contacts</strong></h1>*@
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Title</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Employee Display</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in ViewData["Contacts"] as IEnumerable<CompanyPortal.Models.TblContact>)
-    {
-        <tr>
-            <td>@item.Name</td>
-            <td>@item.Title</td>
-            <td>@item.Email</td>
-            <td>@item.Phone</td>
-            <td>@item.DisplayEmployee</td>
-            <td>
-                    <a asp-action="Index" asp-route-id="@item.Id" class="btn btn-primary">Edit</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
-            </td>
-        </tr>
+<style>
+    .no-margin-padding {
+        margin: 0;
+        padding: 0;
     }
-    </tbody>
-</table>
+</style>
+
+<div class="middle-wrap mb-5 no-margin-padding">
+    <div class="container pb-5 no-margin-padding">
+        <div class="employee-dashboard bg-white p-lg-5 p-4 no-margin-padding">
+            <div class="page-title mb-4">
+                <h1 class="green-color">Team Members</h1>
+            </div>
+            <div class="form-sec">
+                <div class="row no-margin-padding">
+                    <div class="tab-card-sec">
+                        <div class="page-title">
+                            <h2>Employees</h2>
+                        </div>
+                        <div class="tab-card">
+                            <!-- Grid -->
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead style="background-color: #212529; color: #fff;">
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Title</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Employee Display</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in ViewData["Contacts"] as IEnumerable<CompanyPortal.Models.TblContact>)
+                                        {
+                                            <tr>
+                                                <td>@item.Name</td>
+                                                <td>@item.Title</td>
+                                                <td>@item.Email</td>
+                                                <td>@item.Phone</td>
+                                                <td>@item.DisplayEmployee</td>
+                                                <td>
+                                                    <a asp-action="Index" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <h3>@(Model.Id == 0 ? "Create" : "Edit") Contact</h3>
