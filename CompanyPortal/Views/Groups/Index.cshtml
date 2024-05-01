@@ -6,30 +6,55 @@
 
 @* <h1>Group Management</h1> *@
 
-<p>
-    <a asp-action="Create" class="btn btn-success">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.GroupName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.GroupName)
-            </td>
-            <td>
-                    <a asp-action="Edit" asp-route-id="@item.GroupId" class="btn btn-primary">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.GroupId" class="btn btn-info">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.GroupId" class="btn btn-danger">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<style>
+    .no-margin-padding {
+        margin: 0;
+        padding: 0;
+    }
+</style>
+
+<div class="middle-wrap mb-5 no-margin-padding">
+    <div class="container pb-5 no-margin-padding">
+        <div class="employee-dashboard bg-white p-lg-5 p-4 no-margin-padding">
+            <div class="page-title mb-4 d-flex justify-content-between align-items-center">
+                <h1 class="green-color">Groups</h1>
+                <a asp-action="Create" class="btn btn-success mb-0">Create New</a>
+            </div>
+            <div class="form-sec">
+                <div class="row no-margin-padding">
+                    <div class="tab-card-sec">
+                        <div class="page-title">
+                            <h2>Manage Groups</h2>
+                        </div>
+                        <div class="tab-card">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead style="background-color: #212529; color: #fff;">
+                                        <tr>
+                                            <th>@Html.DisplayNameFor(model => model.GroupName)</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@Html.DisplayFor(modelItem => item.GroupName)</td>
+                                                <td>
+                                                    <a asp-action="Edit" asp-route-id="@item.GroupId" class="btn btn-primary">Edit</a>
+                                                    <a asp-action="Details" asp-route-id="@item.GroupId" class="btn btn-info">Details</a>
+                                                    <a asp-action="Delete" asp-route-id="@item.GroupId" class="btn btn-danger">Delete</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
