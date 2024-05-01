@@ -1,0 +1,310 @@
+
+
+ @media only screen and (max-width:1600px) {
+.container { max-width: 1366px; }
+}
+
+ @media only screen and (max-width:1440px) {
+.container { max-width: 1170px; }
+h1, h2.bold-title { font-size: 40px; }
+h2 { font-size: 36px; }
+h3 { font-size: 30px; }
+h4 { font-size: 24px; }
+h5 { font-size: 20px; }
+.btn { font-size: 16px; padding: 10px 24px; }
+.breadcrumb-section .breadcrumb a { font-size: 12px; }
+.form-control { font-size: 14px; }
+.user-account-section{ margin-top: 50px;}
+.signin-btn-group .btn { font-size: 13px; width: 48%; padding: 0 4px; }
+
+
+}
+
+ @media only screen and (max-width:1199px) {
+.signin-btn-group .btn { font-size: 13px; width: 48%; padding: 0 4px; text-align: center; display: flex; justify-content: center; }
+.signin-btn-group .btn i { width: 23px; height: 23px; font-size: 13px; margin-right: 5px; }
+.user-account-section {
+	padding: 40px 30px;
+}
+
+
+}
+ @media only screen and (max-width:991px) {
+
+h1, h2.bold-title { font-size: 36px; }
+h2 { font-size: 32px; }
+h3 { font-size: 26px; }
+h4 { font-size: 20px; }
+h5 { font-size: 18px; }
+.btn { padding: 10px 22px; }
+
+.login-frm { display: flex; flex-wrap: wrap; justify-content: space-between; }
+.user-account-img { padding-right: 0px; text-align: center; margin-bottom: 70px; }
+.user-form { padding-left: 0px; }
+.user-form .form-group { width: 48%; }
+.signin-btn-group .btn i { width: 38px; height: 38px; font-size: 20px; margin-right: 10px; }
+.signin-btn-group .btn { font-size: 16px; width: 48%; padding: 0 15px; }
+.forgot-password .form-group { width: 100%; display: block; }
+.forgot-password h2, .forgot-password p { text-align: center }
+ .row.row-space [class*="col-"] { margin-bottom: 30px; }
+}
+
+ @media only screen and (max-width:767px) {
+.pb-70 { padding-bottom: 45px; }
+.pt-70 { padding-top: 45px; }
+.mt-70 { margin-top: 45px; }
+.ptb-70 { padding-top: 45px; padding-bottom: 45px; }
+h1, h2.bold-title { font-size: 30px; }
+h2 { font-size: 24px; }
+h3 { font-size: 22px; }
+h4 { font-size: 19px; }
+h5 { font-size: 17px; }
+.btn { padding: 10px 18px; white-space: normal; word-break: break-word; }
+.form-control { height: 42px; }
+select.form-control:not([size]):not([multiple]) { height: 42px; }
+
+.user-account-img { margin-bottom: 45px; }
+.user-form { padding-left: 0px; }
+.user-form .form-group { width: 100%; display: block; }
+.signin-btn-group .btn { font-size: 14px; }
+.signin-btn-group .btn i { width: 32px; height: 32px; font-size: 18px; margin-right: 7px; flex-shrink: 0; }
+
+.login-signup-btn .btn {
+	font-size: 13px;
+	font-weight: 600;
+	text-transform: uppercase;
+	padding: 6px 10px;
+	border-radius: 4px;
+}
+.bambooo-logo {
+	width: 145px;
+}
+.login-signup-btn {
+	padding-left: 0;
+
+}
+
+.userpic {
+	width: 50px;
+}
+
+.user-detail p {
+	padding: 0;
+	margin: 0 0 8px 0;
+	font-size: 14px;
+	font-weight: 300;
+}
+.user-detail {
+	padding-left: 10px;
+}
+.tab-card .nav-link{border-radius: 5px;}
+.employee-blk-inner h2{font-size: 16px;}
+.employee-blk-inner {
+	padding: 15px;
+}
+.page-title h1 {
+	font-size: 24px;
+}
+.page-title h2 {
+	font-size: 20px;
+}
+.tab-card .nav-tabs {
+	gap: 10px;
+	padding-bottom: 15px;
+}
+.middle-wrap {
+	margin-top: 100px;
+}
+/*==========================Mobile menu start here===========================*/
+	/*************mobile-menu-start***************/
+	.menuImage {
+		display: block;
+	}
+	.iphon_navigation {
+		background: #000 none repeat scroll 0 0;
+		border-top: medium none;
+		bottom: 0;
+		display: block!important;
+		left: -260px;
+		overflow-y: auto;
+		margin: 0;
+		position: fixed;
+		text-shadow: none;
+		top: 0;
+		transition: all 0.3s ease;
+		-moz-transition: all 0.3s ease;
+		-webkit-transition: all 0.3s ease;
+		width: 260px;
+		z-index: 9999;
+		padding: 10px 0
+	}
+	.nav-open {
+		left: 0!important
+	}
+	.iphon_navigation ul {
+		margin: 0;
+		padding: 0
+	}
+	.iphon_navigation ul li {
+		background: none repeat scroll 0 0 transparent;
+		border-bottom: 1px solid #222;
+		margin: 0;
+		padding: 0!important;
+		text-align: left;
+		width: 100% !important;
+	}
+	.iphon_navigation ul li:last-child {
+		border-bottom: none
+	}
+	.parentMenu > div.subItem {
+		width: 50px;
+		height: 34px;
+		float: right;
+		background: url(../images/sub-nav-arrowup.png) no-repeat center;
+		cursor: pointer
+	}
+	.parentMenuActive > div.subItem {
+		background: url(../images/sub-nav-arrowdown.png) no-repeat scroll center center transparent!important;
+		cursor: pointer;
+		float: none;
+		height: 34px;
+		position: absolute;
+		width: 100%;
+		z-index: 3
+	}
+	.parentMenu > div.subItem {
+		background: url(../images/sub-nav-arrowup.png) no-repeat scroll center center transparent;
+		cursor: pointer;
+		float: right;
+		height: 34px;
+		position: relative;
+		width: 50px;
+		z-index: 3
+	}
+	.iphon_navigation ul li a {
+		background: #000000 none repeat scroll 0 0;
+		color: #ffffff;
+		display: block;
+		font-family: sans-serif;
+		font-size: 18px;
+		font-weight: normal;
+		list-style: outside none none;
+		position: relative;
+		margin: 0;
+		padding: 7px 15px;
+		text-decoration: none;
+		text-transform: none;
+	}
+	.iphon_navigation ul li a:hover {
+		color: #ffa012;
+	}
+	.iphon_navigation > ul ul {
+		padding: 0;
+		width: 100%;
+		display: none;
+		margin: 0
+	}
+	.iphon_navigation ul ul li {
+		background: none;
+		margin: 0;
+		padding: 0!important;
+		text-align: left;
+		width: 100% !important;
+	}
+	.iphon_navigation ul ul li a {
+		background: #111;
+		font-size: 16px;
+		padding: 6px 10px 6px 20px;
+	}
+	.iphon_navigation ul ul li a:hover {
+		color: #ffa012;
+	}
+	body.scroll-hidden {
+		overflow: hidden;
+		position: fixed;
+		width: 100%;
+		height: 100%;
+	}
+	.nav-icon {
+		cursor: pointer;
+		display: block;
+		height: 24px;
+		margin: 0;
+		position: absolute;
+		right: 100px;
+		top: 23px;
+		transition: all 0.3s ease;
+		-moz-transition: all 0.3s ease;
+		-webkit-transition: all 0.3s ease;
+		width: 40px;
+		z-index: 999999;
+	}
+	.nav-icon span {
+		background: #000 none repeat scroll 0 0;
+		display: block;
+		height: 4px;
+		left: 0;
+		opacity: 1;
+		position: absolute;
+		width: 100%;
+		transform: rotate(0deg);
+		-moz-transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);
+		transition: all 0.2s ease;
+		-moz-transition: all 0.2s ease;
+		-webkit-transition: all 0.2s ease;
+		transform-origin: left center 0;
+		-moz-transform-origin: left center 0;
+		-webkit-transform-origin: left center 0;
+	}
+	.nav-icon span:nth-child(1) {
+		top: 0;
+	}
+	.nav-icon span:nth-child(2) {
+		top: 10px;
+	}
+	.nav-icon span:nth-child(3) {
+		top: 20px;
+	}
+	.scroll-hidden .nav-icon {
+		top: 25px;
+	}
+	.scroll-hidden .nav-icon span:nth-child(1) {
+		transform: rotate(45deg);
+		-moz-transform: rotate(45deg);
+		-webkit-transform: rotate(45deg);
+	}
+	.scroll-hidden .nav-icon span:nth-child(2) {
+		opacity: 0;
+		width: 0;
+	}
+	.scroll-hidden .nav-icon span:nth-child(3) {
+		transform: rotate(-45deg);
+		-moz-transform: rotate(-45deg);
+		-webkit-transform: rotate(-45deg);
+		top: 28px;
+	}
+	/*************mobile-menu-end***************/
+	
+
+	.bambooo-logo img {
+		max-height: 44px;
+	}
+}
+
+ @media only screen and (max-width:575px) {
+body { font-size: 14px; }
+
+.user-account-section { padding: 45px 30px; }
+.signin-btn-group .btn { font-size: 14px; width: 48%; padding: 0 4px; }
+.signin-btn-group .btn i { width: 25px; height: 25px; font-size: 14px; margin-right: 8px; }
+.signin-btn-group .btn { width: 100%; margin-bottom: 15px; padding: 0 15px; justify-content: center; }
+.user-account-section{ margin-top: 30px;}
+
+
+
+
+
+
+}
+

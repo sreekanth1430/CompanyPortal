@@ -1,119 +1,149 @@
 ﻿@model CompanyPortal.Models.ViewModels.EmployeeRoleViewModel
 
 <style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    th, td {
-        border: 1px solid black;
-        padding: 10px;
-        text-align: left;
+    .no-margin-padding {
+        margin: 0;
+        padding: 0;
     }
 </style>
 
-@* <h2>Employees</h2> *@
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Employee ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var employee in Model.EmployeeUsers)
-        {
-            <tr>
-                <td>@employee.EmployeeId</td>
-                <td>@employee.FirstName</td>
-                <td>@employee.LastName</td>
-                <td>@employee.Email</td>
-                <td>
-                    <form asp-action="ChangeRole" asp-controller="TeamMembers" method="post" class="d-inline-block ml-2">
-                        <input type="hidden" name="employeeId" value="@employee.EmployeeId" />
-                        <input type="hidden" name="newRoleId" value="2" />
-                        <input type="submit" value="Make HR" class="btn btn-success" />
-                    </form>
-                    <form asp-action="ChangeRole" asp-controller="TeamMembers" method="post" class="d-inline-block">
-                        <input type="hidden" name="employeeId" value="@employee.EmployeeId" />
-                        <input type="hidden" name="newRoleId" value="3" />
-                        <input type="submit" value="Make Campus User" class="btn btn-success" />
-                    </form>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-
-<h2>HR Users</h2>
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Employee ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var employee in Model.HrUsers)
-        {
-            <tr>
-                <td>@employee.EmployeeId</td>
-                <td>@employee.FirstName</td>
-                <td>@employee.LastName</td>
-                <td>@employee.Email</td>
-                <td>
-                    <form asp-action="ChangeRole" asp-controller="TeamMembers" method="post" class="form-inline">
-                        <input type="hidden" name="employeeId" value="@employee.EmployeeId" />
-                        <input type="hidden" name="newRoleId" value="1" />
-                        <input type="submit" value="Remove HR User" class="btn btn-danger mr-2" />
-                    </form>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-
-<h2>Campus Users</h2>
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Employee ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var employee in Model.CampusUsers)
-        {
-            <tr>
-                <td>@employee.EmployeeId</td>
-                <td>@employee.FirstName</td>
-                <td>@employee.LastName</td>
-                <td>@employee.Email</td>
-                <td>
-                    <form asp-action="ChangeRole" asp-controller="TeamMembers" method="post" class="form-inline">
-                        <input type="hidden" name="employeeId" value="@employee.EmployeeId" />
-                        <input type="hidden" name="newRoleId" value="1" />
-                        <input type="submit" value="Remove Campus User" class="btn btn-danger mr-2" />
-                    </form>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
+<div class="middle-wrap mb-5 no-margin-padding">
+    <div class="container pb-5 no-margin-padding">
+        <div class="employee-dashboard bg-white p-lg-5 p-4 no-margin-padding">
+            <div class="page-title mb-4">
+                <h1 class="green-color">Team Members</h1>
+            </div>
+            <div class="form-sec">
+                <div class="row no-margin-padding">
+                    <div class="tab-card-sec">
+                        <div class="page-title">
+                            <h2>Employees</h2>
+                        </div>
+                        <div class="tab-card">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Employee ID</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Email</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var employee in Model.EmployeeUsers)
+                                        {
+                                            <tr>
+                                                <td>@employee.EmployeeId</td>
+                                                <td>@employee.FirstName</td>
+                                                <td>@employee.LastName</td>
+                                                <td>@employee.Email</td>
+                                                <td>
+                                                    <form asp-action="ChangeRole" asp-controller="TeamMembers" method="post" class="d-inline-block ml-2">
+                                                        <input type="hidden" name="employeeId" value="@employee.EmployeeId" />
+                                                        <input type="hidden" name="newRoleId" value="2" />
+                                                        <input type="submit" value="Make HR" class="btn btn-success" />
+                                                    </form>
+                                                    <form asp-action="ChangeRole" asp-controller="TeamMembers" method="post" class="d-inline-block">
+                                                        <input type="hidden" name="employeeId" value="@employee.EmployeeId" />
+                                                        <input type="hidden" name="newRoleId" value="3" />
+                                                        <input type="submit" value="Make Campus User" class="btn btn-success" />
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- HR Users Section -->
+                    <div class="tab-card-sec">
+                        <br />
+                        <div class="page-title">
+                            <h2>HR Users</h2>
+                        </div>
+                        <div class="tab-card">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Employee ID</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Email</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var employee in Model.HrUsers)
+                                        {
+                                            <tr>
+                                                <td>@employee.EmployeeId</td>
+                                                <td>@employee.FirstName</td>
+                                                <td>@employee.LastName</td>
+                                                <td>@employee.Email</td>
+                                                <td>
+                                                    <form asp-action="ChangeRole" asp-controller="TeamMembers" method="post" class="d-inline-block ml-2">
+                                                        <input type="hidden" name="employeeId" value="@employee.EmployeeId" />
+                                                        <input type="hidden" name="newRoleId" value="1" />
+                                                        <input type="submit" value="Remove HR User" class="btn btn-danger" />
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Campus Users Section -->
+                    <div class="tab-card-sec">
+                        <br />
+                        <div class="page-title">
+                            <h2>Campus Users</h2>
+                        </div>
+                        <div class="tab-card">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Employee ID</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Email</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var employee in Model.CampusUsers)
+                                        {
+                                            <tr>
+                                                <td>@employee.EmployeeId</td>
+                                                <td>@employee.FirstName</td>
+                                                <td>@employee.LastName</td>
+                                                <td>@employee.Email</td>
+                                                <td>
+                                                    <form asp-action="ChangeRole" asp-controller="TeamMembers" method="post" class="d-inline-block ml-2">
+                                                        <input type="hidden" name="employeeId" value="@employee.EmployeeId" />
+                                                        <input type="hidden" name="newRoleId" value="1" />
+                                                        <input type="submit" value="Remove Campus User" class="btn btn-danger" />
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 

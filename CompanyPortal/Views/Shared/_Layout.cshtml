@@ -6,22 +6,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - CompanyPortal</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/CompanyPortal.styles.css" asp-append-version="true" />
+    @* <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> *@
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="~/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="~/css/style.css" rel="stylesheet" type="text/css">
+    <link href="~/css/responsive.css" rel="stylesheet" type="text/css">
+
+    @* <link rel="stylesheet" href="~/CompanyPortal.styles.css" asp-append-version="true" /> *@
+    <style>
+        .middle-wrap .container {
+            padding-left: 0;
+        }
+    </style>
+
 </head>
 <body>
-    <main role="main" class="pb-3">
-        @RenderBody()
-    </main>
+    <div class="page">
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - CompanyPortal - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <header class="header">
+            <div class="container-fluid">
+                <div class="header-inner d-flex  justify-content-between  align-items-center">
+                    <div class="bambooo-logo"><img src="images/logo.png" alt="Logo"></div>
+                    <div class="top-menu">
+                        <a href="javascript:void(0)" class="menuImage nav-icon"> <span></span> <span></span> <span></span> </a>
+                        <div class="menu iphonNav">
+                            <ul>
+                                <li><a href="javascript:void(0)">Home</a></li>
+                                <li>
+                                    <a href="javascript:void(0)">Account <i class="fas fa-angle-down"></i></a>
+                                    <ul>
+                                        <li>
+                                            <a href="javascript:void(0)">Email </a>
+                                        </li>
+                                        <li><a href="javascript:void(0)">Email</a></li>
+                                        <li><a href="javascript:void(0)">Email</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="login-signup-btn"> <a href="javascript:void(0)" class="btn  green-bdr-btn">Logout</a></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+        <div class="middle-wrap  mb-5">
+            <div class="container-fluid pb-5">
+                @RenderBody()
+            </div>
         </div>
-    </footer>
+
+
+        <footer class="footer">
+            <div class="copyright">© Copyright 2024 , All right reserved. </div>
+        </footer>
+
+    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/iphone-menu.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
